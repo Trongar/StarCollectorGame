@@ -10,7 +10,6 @@ export default class HelloWorldScene extends Phaser.Scene {
 	private score = 0
 	private scoreText?: Phaser.GameObjects.Text
 
-	private gameOver = false
 
 	constructor() {
 		super('hello-world')
@@ -97,7 +96,7 @@ export default class HelloWorldScene extends Phaser.Scene {
 
 
 	}
-	private handleCollectStar(player: Phaser.GameObjects.GameObject, s: Phaser.GameObjects.GameObject) {
+	private handleCollectStar(_player: Phaser.GameObjects.GameObject, s: Phaser.GameObjects.GameObject) {
 		const star = s as Phaser.Physics.Arcade.Image
 		star.disableBody(true, true)
 		this.score += 10;
@@ -119,11 +118,11 @@ export default class HelloWorldScene extends Phaser.Scene {
 		}
 	}
 
-	private handleHitBomb(player: Phaser.GameObjects.GameObject, b: Phaser.GameObjects.GameObject) {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	private handleHitBomb(_player: Phaser.GameObjects.GameObject, _b: Phaser.GameObjects.GameObject) {
 		this.physics.pause()
 		this.player?.setTint(0xff0000)
 		this.player?.anims.play('turn')
-		this.gameOver = true
 	}
 
 	update() {
